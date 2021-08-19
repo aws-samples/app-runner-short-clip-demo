@@ -1,21 +1,42 @@
-# app-runner short clip
+# AWS App Runner - Page Impression Counter App
 
-The demo will show case a web app that will have access to a DynamoDB table with a counter, and will count page impressions using DynamoDB.
+This repository was built for demoing how to deploy a "Bring your own code" project to [AWS App Runner](https://aws.amazon.com/apprunner/), following a short clip that was uploaded to YouTube in Hebrew. In the short clip you will be able to see a step by step console demo, and this repository will demonstrate how to deploy the app using AWS Cli.
 
-The short clip will demonstrate how to deploy a `nodejs` application in 2 ways:
+The application is a very simple page impression counter `nodejs` app for demo purposes only, that is built and deployed to AWS App Runner service, the app will use a DynamoDB table as described in the following diagram as a counter.
 
-1. Source code repository with auto deployment
-2. Container registry with automatic deployment
+![diagram](./images/diagram.png)
 
->In the short clip I will talk on `apprunner.yaml` file that allows to custom config the application build and run.
+## Prerequisite
 
-## Setup
+In AWS App Runner console, create a GitHub connection, and named it `github` as described in our [documentation](https://docs.aws.amazon.com/apprunner/latest/dg/manage-connections.html)
 
-1. Create a DynamoDB table `1_prep_dynamodb.sh`
-2. Create proper permissions for app runner task to access DynamoDB securely `2_permissions.sh`
-3. Create a Github connection
-4. Create a ECR repository, build and push application docker image `3_create_ecr.sh`
-5. Create App Runner service with ECR auto deployment `4_apprunner_ecr.sh`, explain on the managed role `AppRunnerECRAccessRole` for pulling from ECR
-6. Create App Runner service with Github hook auto deployment `5_apprunner_github.sh`
-7. showing the auto deployment in both scenarios 4,5.
-8. showing the auto scale with stressing the application with `wrk` using `6_stress_test.sh`
+## Deploying the App
+
+In the `./scripts` folder are all the scripts that you can use to deploy this app.
+
+**Steps:**
+
+1. `1_prep_dynamodb.sh` - Creates the counter DynamoDB table.
+2. `2_permissions.sh` - Creates proper permissions for app runner task to access DynamoDB securely.
+3. Create App Runner service with Github hook auto deployment `3_apprunner_github.sh`
+4. showing the auto scale with stressing the application with `wrk` using `6_stress_test.sh`
+
+### Optional Deployment from ECR
+
+In AWS App Runner, in addition built and run your code, as described above, you also have the option to run your container.
+In order to deploy your container, you will need to build this app using the `Dockerfile` and push it to your [ECR](https://aws.amazon.com/ecr/) Repository.
+
+>Make sure you have Docker installed and running, and you have IAM permissions to create and push to an ECR repository.
+
+**Steps:**
+
+1. To create an ECR repository, build and push the application docker image `4_create_ecr_build_push.sh`
+2. Create App Runner service with ECR auto deployment `4_apprunner_ecr.sh`
+
+### Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+### License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
