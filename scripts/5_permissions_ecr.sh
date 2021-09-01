@@ -14,9 +14,7 @@ read -r -d '' TRUST <<EOF
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": {
-          "build.apprunner.amazonaws.com"
-        }
+        "Service": "build.apprunner.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
     }
@@ -35,7 +33,7 @@ APPRUNNER_IAM_ROLE_ARN=$(aws iam create-role \
 echo "Created IAM Role"
 
 # Attach IAM policy to IAM Role
-aws iam attach-role-policy --role-name $APPRUNNER_ROLE_NAME --policy-arn $IAM_POLICY_ARN  
+aws iam attach-role-policy --role-name $APPRUNNER_ROLE_NAME --policy-arn $IAM_MANAGED_POLICY_ACCESS_ARN  
 
 # Attach trust policy to IAM role
 aws iam update-assume-role-policy --role-name $APPRUNNER_ROLE_NAME --policy-document file://TrustPolicy.json
