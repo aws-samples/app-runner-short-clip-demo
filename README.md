@@ -19,7 +19,7 @@ In the `./scripts` folder are all the scripts that you can use to deploy this ap
 
 1. `1_prep_dynamodb.sh` - Creates the counter DynamoDB table.
 2. `2_permissions.sh` - Creates proper permissions for app runner task to access DynamoDB securely.
-3. Create App Runner service with Github hook auto deployment `3_apprunner_github.sh`
+3. Create App Runner service with Github hook auto deployment `3_apprunner_github.sh`, Make sure to update the REPO_URL variable with yours before running the script. the AWS Connector that was configured in the prerequisite, should have access to this repo.
 4. showing the auto scale with stressing the application with `wrk` using `6_stress_test.sh`
 
 ### Optional Deployment from ECR
