@@ -8,7 +8,8 @@ The application is a very simple page impression counter `nodejs` app for demo p
 
 ## Prerequisite
 
-In AWS App Runner console, create a GitHub connection, and named it `github` as described in our [documentation](https://docs.aws.amazon.com/apprunner/latest/dg/manage-connections.html)
+1. [`awscli`](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) >= 2.2.34, if you are using AWS CLI [version 1](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html), you might get errors on `--no-cli-pager` switch of `Unknown options`, you can remove it from the scripts.  
+2. In AWS App Runner console, create a GitHub connection, and named it `github` as described in our [documentation](https://docs.aws.amazon.com/apprunner/latest/dg/manage-connections.html).
 
 ## Deploying the App
 
@@ -31,7 +32,7 @@ In order to deploy your container, you will need to build this app using the `Do
 **Steps:**
 
 1. To create an ECR repository, build and push the application docker image `4_create_ecr_build_push.sh`
-2. Create App Runner service with ECR auto deployment `4_apprunner_ecr.sh`
+2. Create App Runner service with ECR auto deployment `5_apprunner_ecr.sh`
 
 ### Security
 
@@ -39,4 +40,4 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 ### License
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+This repository is licensed under the MIT-0 License. See the LICENSE file.
