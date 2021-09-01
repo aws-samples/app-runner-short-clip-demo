@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REGION='eu-west-1'
+REGION='us-east-1'
 APP='app-runner-short-clip-demo'
 
 check=$(aws ecr describe-repositories  --region ${REGION} --repository-name ${APP} | jq -r .repositories[].repositoryName | wc -l)

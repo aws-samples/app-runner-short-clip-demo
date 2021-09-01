@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REGION='eu-west-1'
+REGION='us-east-1'
 ACCOUNT_ID=$(aws sts get-caller-identity | jq -r '.Account')
 APP='app-runner-short-clip-demo'
 
