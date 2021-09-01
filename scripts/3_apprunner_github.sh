@@ -1,12 +1,12 @@
 #!/bin/bash
 
 SERVICE_NAME=app-runner-github-demo
-REGION=eu-west-1
-REPO_URL=https://github.com/omerh/app-runner-workshop
+AWS_REGION=us-east-1
+REPO_URL=https://github.com/aws-samples/app-runner-short-clip-demo
 ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 DYNAMODB_TABLE=app-runner-demo-table
 CONNECTION_NAME=github
-CONNECTION_ARN=$(aws apprunner list-connections --region $REGION --query "ConnectionSummaryList[?ConnectionName=='$CONNECTION_NAME'] | [:1].ConnectionArn" --output text --no-cli-pager)
+CONNECTION_ARN=$(aws apprunner list-connections --region ${AWS_REGION} --query "ConnectionSummaryList[?ConnectionName=='$CONNECTION_NAME'] | [:1].ConnectionArn" --output text --no-cli-pager)
 
 
 # create serice configiration file
@@ -66,7 +66,7 @@ echo "${INSTANCE_CONFIGURATION}" > healthCheckConfiguration.json
 echo "Creating app runner service"
 aws apprunner create-service \
     --service-name ${SERVICE_NAME} \
-    --region ${REGION} \
+    --region ${AWS_REGION} \
     --source-configuration file://serviceConfiguration.json \
     --instance-configuration file://instanceConfiguration.json \
     --health-check-configuration file://healthCheckConfiguration.json

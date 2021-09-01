@@ -3,7 +3,7 @@
 set -e
 
 ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
-APPRUNNER_REGION='eu-west-1'
+AWS_REGION='us-east-1'
 APPRUNNER_POLICY_NAME='apprunner-demo-policy'
 APPRUNNER_ROLE_NAME='apprunner-demo-role'
 DYNAMODB_TABLE='app-runner-demo-table'
@@ -38,7 +38,7 @@ read -r -d '' PERMISSION_POLICY <<EOF
                 "dynamodb:GetItem",
                 "dynamodb:UpdateItem"
             ],
-            "Resource": "arn:aws:dynamodb:${APPRUNNER_REGION}:${ACCOUNT_ID}:table/${DYNAMODB_TABLE}"
+            "Resource": "arn:aws:dynamodb:${AWS_REGION}:${ACCOUNT_ID}:table/${DYNAMODB_TABLE}"
         }
     ]
 }

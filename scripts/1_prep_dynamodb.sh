@@ -4,6 +4,7 @@ set -e
 
 # Dynamodb table name
 DYNAMODB_TABLE='app-runner-demo-table'
+AWS_REGION='us-east-1'
 
 # create an on demand dynamodb table
 aws dynamodb create-table \
@@ -11,6 +12,7 @@ aws dynamodb create-table \
     --attribute-definitions AttributeName=name,AttributeType=S \
     --key-schema AttributeName=name,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST \
+    --region ${AWS_REGION}
     --no-cli-pager
 
 TABLE_STATUS="NOTREADY"
@@ -19,6 +21,7 @@ until [ "$TABLE_STATUS" == "ACTIVE" ]; do
     TABLE_STATUS=$(aws dynamodb describe-table \
         --table-name ${DYNAMODB_TABLE} \
         --query Table.TableStatus \
+        --region ${AWS_REGION} \
         --output text)
     echo "Waiting for table to be in status ACTIVE"
     sleep 1
@@ -28,6 +31,6 @@ done
 
 # Set counter record in Dynamodb
 aws dynamodb put-item \
-    --region eu-west-1 \
+    --region ${AWS_REGION} \
     --table-name ${DYNAMODB_TABLE} \
     --item '{ "name": { "S": "counter" }, "counter_count": { "N" : "0" } }'

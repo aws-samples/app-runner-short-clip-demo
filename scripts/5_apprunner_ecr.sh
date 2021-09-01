@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SERVICE_NAME='app-runner-ecr-demo'
-REGION='eu-west-1'
+AWS_REGION='us-east-1'
 ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 DYNAMODB_TABLE='app-runner-demo-table'
 
@@ -9,7 +9,7 @@ DYNAMODB_TABLE='app-runner-demo-table'
 read -r -d '' SERVICE_CONFIGURATION <<EOF
 {
   "ImageRepository": {
-    "ImageIdentifier": "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/app-runner-demo-app:latest",
+    "ImageIdentifier": "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/app-runner-demo-app:latest",
     "ImageConfiguration": {
       "RuntimeEnvironmentVariables": {
           "DYNAMODB_DEMO_TABLE": "${DYNAMODB_TABLE}",
@@ -53,7 +53,7 @@ echo "${INSTANCE_CONFIGURATION}" > healthCheckConfiguration.json
 echo "Creating app runner service"
 aws apprunner create-service \
     --service-name ${SERVICE_NAME} \
-    --region ${REGION} \
+    --region ${AWS_REGION} \
     --source-configuration file://serviceConfiguration.json \
     --instance-configuration file://instanceConfiguration.json \
     --health-check-configuration file://healthCheckConfiguration.json
