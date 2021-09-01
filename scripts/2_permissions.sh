@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 AWS_REGION='us-east-1'
 APPRUNNER_POLICY_NAME='apprunner-demo-policy'
@@ -51,12 +49,16 @@ IAM_POLICY_ARN=$(aws iam create-policy \
     --policy-document file://PermissionPolicy.json \
     --query "Policy.Arn" --output text)
 
+echo "Created policy"
+
 # create IAM Role
 APPRUNNER_IAM_ROLE_ARN=$(aws iam create-role \
   --role-name $APPRUNNER_ROLE_NAME \
   --assume-role-policy-document file://TrustPolicy.json \
   --description "$APPRUNNER_ROLE_NAME" \
   --query "Role.Arn" --output text)
+
+echo "Created IAM Roles"
 
 # Attach IAM policy to IAM Role
 aws iam attach-role-policy --role-name $APPRUNNER_ROLE_NAME --policy-arn $IAM_POLICY_ARN  
