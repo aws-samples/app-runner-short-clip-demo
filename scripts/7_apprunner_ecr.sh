@@ -23,7 +23,7 @@ read -r -d '' SERVICE_CONFIGURATION <<EOF
   },
   "AutoDeploymentsEnabled": true,
   "AuthenticationConfiguration": {
-    "AccessRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/service-role/${APPRUNNER_ACCESS_ROLE_NAME}"
+    "AccessRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/${APPRUNNER_ACCESS_ROLE_NAME}"
   }
 }
 EOF
