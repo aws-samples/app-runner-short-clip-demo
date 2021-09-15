@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Stress test will us wrk, a HTTP benchmarking tool
+# Stress test will use wrk, a HTTP benchmarking tool
 # https://github.com/wg/wrk
 # Installation using homebrew, brew install wrk
 #
