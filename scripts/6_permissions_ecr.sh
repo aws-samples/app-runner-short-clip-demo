@@ -5,6 +5,9 @@ AWS_REGION='us-east-1'
 APPRUNNER_ROLE_NAME='apprunner-demo-ecr-access-role'
 IAM_MANAGED_POLICY_ACCESS_ARN='arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess'
 
+# make sure to be in scripts folder
+cd `git rev-parse --show-toplevel`/scripts
+
 # create role
 echo "Creating a new trust policy"
 read -r -d '' TRUST <<EOF

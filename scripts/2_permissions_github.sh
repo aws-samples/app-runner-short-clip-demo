@@ -6,6 +6,9 @@ APPRUNNER_POLICY_NAME='apprunner-demo-policy'
 APPRUNNER_ROLE_NAME='apprunner-demo-role'
 DYNAMODB_TABLE='app-runner-demo-table'
 
+# make sure to be in scripts folder
+cd `git rev-parse --show-toplevel`/scripts
+
 # create role
 echo "Creating a new trust policy"
 read -r -d '' TRUST <<EOF
