@@ -8,9 +8,9 @@
 # Required environment variables
 APP=app-runner-demo-application
 AWS_REGION=us-east-1
-CONCURRENT=20
-DURATION=300
-THREAD=5
+CONCURRENT=25
+DURATION=3000
+THREAD=2
 
 # Query our app runner URL
 URL=$(aws apprunner list-services --region ${AWS_REGION} --query "ServiceSummaryList[?ServiceName=='$APP'] | [:1].ServiceUrl" --output text --no-cli-pager)
