@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/omerh/app-runner-workshop#readme",
   "dependencies": {
-    "aws-sdk": "^2.958.0",
+    "aws-sdk": "^2.989.0",
     "compression": "^1.7.4",
     "express": "^4.17.1"
   }
