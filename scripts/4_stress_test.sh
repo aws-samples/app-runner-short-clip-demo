@@ -7,7 +7,7 @@
 
 # Required environment variables
 APP=app-runner-demo-application
-AWS_REGION=eu-west-1
+AWS_REGION=us-east-1
 CONCURRENT=20
 DURATION=300
 THREAD=5
