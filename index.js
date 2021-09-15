@@ -43,4 +43,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`app listening at ${port}`);
+    console.log(`working in region ${process.env.AWS_REGION} on dynamodb table ${process.env.DYNAMODB_DEMO_TABLE}`)
 });
